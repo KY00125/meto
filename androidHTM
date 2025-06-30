@@ -1,0 +1,103 @@
+4. Android環境を設定
+React NativeでAndroidアプリを開発するには、Android Studioをインストールして必要なSDKやツールを設定する必要があります。
+
+手順:
+Android Studioのインストール
+
+Android Studioの公式サイトからAndroid Studioをダウンロードしてインストールします。
+SDKのインストール
+
+Android Studioを起動し、初回セットアップで必要なSDKをインストールします。
+「SDK Manager」を開き、以下を確認してインストールします:
+Android SDK Platform
+Android SDK Build-Tools
+Android Emulator（エミュレーターを使用する場合）
+環境変数の設定
+
+React NativeがAndroid SDKを認識できるように、環境変数を設定します。
+以下の手順で設定します:
+Windowsの場合:
+「環境変数」を開きます。
+ANDROID_HOMEという名前の環境変数を作成し、Android SDKのインストールパスを指定します（例: C:\Users\<ユーザー名>\AppData\Local\Android\Sdk）。
+PATH変数に以下を追加します:
+%ANDROID_HOME%\platform-tools
+%ANDROID_HOME%\tools
+macOS/Linuxの場合:
+ターミナルで以下を実行して環境変数を設定します:
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/tools
+.bashrcや.zshrcに追加して永続化します。
+エミュレーターの設定
+
+Android Studioの「AVD Manager」を使用してエミュレーターを作成します。
+推奨設定:
+デバイス: Pixelシリーズ（例: Pixel 4）
+APIレベル: 最新の安定版（例: API 30以上）
+動作確認
+
+ターミナルで以下を実行して、Android SDKが正しく設定されているか確認します:
+adb devices
+エミュレーターが起動している場合、デバイスがリストに表示されます。
+5. アプリを開発
+React Nativeでアプリを開発する際は、プロジェクト内のApp.jsファイルを編集してUIやロジックを作成します。
+
+手順:
+プロジェクトの構造を理解
+
+React Nativeプロジェクトの主な構造:
+MyApp/
+├── android/        # Android関連のネイティブコード
+├── ios/            # iOS関連のネイティブコード
+├── node_modules/   # npmでインストールされた依存関係
+├── App.js          # アプリのエントリーポイント
+├── package.json    # プロジェクトの設定と依存関係
+└── index.js        # React Nativeのエントリーポイント
+App.jsを編集
+
+App.jsはアプリのメインファイルです。ここでUIやロジックを記述します。
+例: シンプルな画面を作成するコード
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+
+const App = () => {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>Hello, React Native!</Text>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f5f5f5',
+  },
+  text: {
+    fontSize: 20,
+    color: '#333',
+  },
+});
+
+export default App;
+アプリを実行
+
+ターミナルで以下を実行してアプリをエミュレーターまたは実機で実行します:
+react-native run-android
+エミュレーターが起動していない場合は、手動でAndroid Studioからエミュレーターを起動してください。
+ホットリロードを使用
+
+React Nativeはホットリロード機能を提供しており、コードを保存すると自動的に変更が反映されます。
+エミュレーター上でCtrl + M（Windows）またはCmd + M（Mac）を押してデバッグメニューを表示し、「Enable Hot Reload」を選択します。
+外部ライブラリの追加
+
+必要に応じて外部ライブラリを追加できます。
+例: React Navigationを使用して画面遷移を実装する場合:
+npm install @react-navigation/native react-native-screens react-native-safe-area-context react-native-gesture-handler react-native-reanimated
+デバッグ
+
+React Native DebuggerやChrome DevToolsを使用してアプリをデバッグします。
+ターミナルで以下を実行してデバッグモードを有効にします:
+react-native start
