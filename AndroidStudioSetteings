@@ -1,0 +1,77 @@
+1. React Native環境のセットアップ
+React NativeアプリをAndroidエミュレーターで動かすには、以下の環境が必要です。
+
+Node.js   確認方法：node -v,npm -v,yarn -v
+React Native CLI 確認方法：react-native -v
+Android Studio（すでにインストール済み）
+Java Development Kit (JDK)　　確認方法：java -version
+もしReact Native CLIをインストールしていない場合は、以下のコマンドでインストールしてください。
+
+npm install -g react-native-cli
+
+環境変数の確認
+Android SDKのパスが環境変数に正しく設定されているか確認します。
+ターミナルで以下のコマンドを実行して環境変数を確認します。
+echo $ANDROID_HOME
+ANDROID_HOME が正しいパスを指している場合、問題ありません。もし設定されていない場合は、以下を追加してください。
+
+macOS/Linuxの場合:
+~/.bashrc または ~/.zshrc に以下を追加します。
+
+export ANDROID_HOME=/path/to/android-sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+2. Android Studioの設定
+Android Studioでエミュレーターを起動できる状態であることを確認してください。以下の設定を確認してください。
+
+Android SDKのインストール:
+
+Android Studioを開き、Preferences > Appearance & Behavior > System Settings > Android SDK に移動します。
+必要なSDKツール（例えば、Android SDK Platform、Android SDK Build-Toolsなど）がインストールされていることを確認してください。
+エミュレーターの作成:
+
+Tools > AVD Manager を開き、新しい仮想デバイスを作成します。
+デバイスを選択し、Androidのバージョンをダウンロードして設定します。
+
+3. React Nativeプロジェクトの作成
+新しいReact Nativeプロジェクトを作成するには、以下のコマンドを実行します。
+
+npx react-native init YourProjectName
+作成済みのプロジェクトがある場合は、プロジェクトのディレクトリに移動してください。
+
+cd YourProjectName
+
+4. Androidエミュレーターでアプリを実行
+以下の手順でエミュレーター上でReact Nativeアプリを実行します。
+
+エミュレーターを起動: Android StudioのAVD Managerからエミュレーターを起動します。
+
+Metro Bundlerを起動: React NativeはMetro Bundlerを使用してコードをバンドルします。以下のコマンドを実行してMetro Bundlerを起動します。
+
+npx react-native start
+アプリをビルドして実行: 別のターミナルを開き、以下のコマンドを実行してアプリをエミュレーターにインストールして実行します。
+
+npx react-native run-android
+
+5. トラブルシューティング
+もしエミュレーターにアプリが反映されない場合、以下を確認してください。
+
+エミュレーターが正しく起動しているか: エミュレーターが動作している状態で、adb devices コマンドを実行して、エミュレーターが認識されているか確認してください。
+
+adb devices
+エミュレーターがリストに表示されない場合、Android Studioの設定を確認してください。
+
+必要な依存関係がインストールされているか: React Nativeプロジェクトのディレクトリで以下のコマンドを実行して依存関係をインストールしてください。
+
+npm install
+エミュレーターのAPIレベル: エミュレーターのAPIレベルがReact Nativeでサポートされているバージョンであることを確認してください。
+
+6. デバッグ
+React Nativeアプリがエミュレーターで動作している場合、デバッグツールを使用して問題を確認できます。
+
+Metro Bundlerのログ: Metro Bundlerのターミナルにエラーが表示されていないか確認してください。
+
+React Native Debugger: React Native Debuggerを使用して、アプリの状態やコンソールログを確認できます。
