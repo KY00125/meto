@@ -1,0 +1,32 @@
+<MainWidget>:
+    canvas.before:
+        Color:
+            rgba: self.background_color
+        Rectangle:
+            size: self.size
+            pos: self.pos
+        
+    orientation: 'vertical'
+    padding: 20
+    spacing: 10
+
+    Button:
+        text: 'Change to Red'
+        background_color: self.button_color
+        color: self.text_color
+        on_release: 
+            root.change_color([1, 0, 0, 1],[0.8, 0.2, 0.2, 1],[1, 1, 1, 1])  # Change to red
+
+    Button:
+        text: 'Change to Blue'
+        background_color: self.button_color
+        color: self.text_color
+        on_release: 
+            root.change_color([0, 0, 1, 1],[0.2, 0.2, 0.8, 1],[1, 1, 1, 1])  # Change to blue
+
+    Button:
+        text: 'Change to Green'
+        background_color: self.button_color
+        color: self.text_color
+        on_release: 
+            root.change_color([0, 1, 0, 1],[0.2, 0.8, 0.2, 1],[1, 1, 1, 1])  # Change to green
